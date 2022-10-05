@@ -1,0 +1,21 @@
+{
+    "KPlugin": {
+        "Category": "Window Open/Close Animation",
+        "Description": "Make windows smoothly scale in and out when they are shown or hidden",
+        "EnabledByDefault": false,
+        "Icon": "preferences-system-windows-effect-scale",
+        "Id": "kwin4_effect_open_close_kinetic",
+        "License": "GPL",
+        "Name": "Open/Close Kinetic",
+        "ServiceTypes": [
+            "KWin/Effect"
+        ],
+        "Version": "1"
+    },
+    "X-KDE-Ordering": "60",
+    "X-KDE-PluginKeyword": "kwin4_effect_open_close_kinetic",
+    "X-KWin-Config-TranslationDomain": "kwin_effects",
+    "X-KWin-Exclusive-Category": "toplevel-open-close-animation",
+    "X-Plasma-API": "javascript",
+    "X-Plasma-MainScript": "code/main.js"
+}
