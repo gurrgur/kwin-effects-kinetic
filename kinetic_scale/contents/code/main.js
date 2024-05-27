@@ -15,15 +15,30 @@ const blacklist = [
     "ksmserver-logout-greeter ksmserver-logout-greeter",
 
     // KDE Plasma splash screen has to be animated only by the login effect.
-    "ksplashqml ksplashqml"
+    "ksplashqml ksplashqml",
+
+    // Spectacle needs to be blacklisted in order to stay out of its own screenshots.
+    "spectacle spectacle", // x11
+    "spectacle org.kde.spectacle", // wayland
 ];
 
 class ScaleEffect {
     constructor() {
+        effect.configChanged.connect(this.loadConfig.bind(this));
         effect.animationEnded.connect(this.cleanupForcedRoles.bind(this));
         effects.windowAdded.connect(this.slotWindowAdded.bind(this));
         effects.windowClosed.connect(this.slotWindowClosed.bind(this));
         effects.windowDataChanged.connect(this.slotWindowDataChanged.bind(this));
+
+        this.loadConfig();
+    }
+
+    loadConfig() {
+        // const defaultDuration = 200;
+        // const duration = effect.readConfig("Duration", defaultDuration) || defaultDuration;
+        // this.duration = animationTime(duration);
+        // this.inScale = effect.readConfig("InScale", 0.8);
+        // this.outScale = effect.readConfig("OutScale", 0.8);
     }
 
     static isScaleWindow(window) {

@@ -58,7 +58,8 @@ function isPopupWindow(window) {
     // was doing that.
     if (window.dock || window.splash || window.toolbar
             || window.notification || window.onScreenDisplay
-            || window.criticalNotification) {
+            || window.criticalNotification
+            || window.appletPopup) {
         return true;
     }
 
@@ -67,8 +68,8 @@ function isPopupWindow(window) {
 
 var fadingPopupsEffect = {
     loadConfig: function () {
-        fadingPopupsEffect.fadeInDuration = animationTime(50);
-        fadingPopupsEffect.fadeOutDuration = animationTime(67);
+        fadingPopupsEffect.fadeInDuration = animationTime(200);
+        fadingPopupsEffect.fadeOutDuration = animationTime(200);
     },
     slotWindowAdded: function (window) {
         if (effects.hasActiveFullScreenEffect) {
@@ -85,10 +86,10 @@ var fadingPopupsEffect = {
         }
         window.fadeInAnimation = animate({
             window: window,
-            curve: QEasingCurve.Linear,
+            curve: QEasingCurve.OutCubic,
             duration: fadingPopupsEffect.fadeInDuration,
             type: Effect.Opacity,
-            from: 0.25,
+            from: 0.2,
             to: 1.0
         });
     },
@@ -107,7 +108,7 @@ var fadingPopupsEffect = {
         }
         window.fadeOutAnimation = animate({
             window: window,
-            curve: QEasingCurve.Linear,
+            curve: QEasingCurve.OutCubic,
             duration: fadingPopupsEffect.fadeOutDuration,
             type: Effect.Opacity,
             from: 0.80,
