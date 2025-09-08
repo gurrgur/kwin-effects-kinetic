@@ -134,6 +134,7 @@
         "Name[zh_TW]": "最大化 (Kinetic)"
     },
     "X-KDE-Ordering": 60,
+    "X-KWin-Exclusive-Category": "maximize",
     "X-KWin-Video-Url": "https://files.kde.org/plasma/kwin/effect-videos/maximize.ogv",
     "X-Plasma-API": "javascript"
 }
