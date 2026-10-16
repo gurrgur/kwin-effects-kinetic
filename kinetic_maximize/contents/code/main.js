@@ -97,8 +97,19 @@ class MaximizeKineticEffect {
         });
     }
 
-    restoreForceBlurState(window) {
-        window.setData(Effect.WindowForceBlurRole, null);
+    restoreForceBlurState(window, animationId) {
+        if (window.maximizeAnimation1 === animationId) {
+            delete window.maximizeAnimation1;
+        } else if (window.maximizeAnimation2 === animationId) {
+            delete window.maximizeAnimation2;
+        } else {
+            return;
+        }
+        // Keep blur forced until both the resize and the cross-fade are done,
+        // otherwise the blur drops out for the last frame of the longer one.
+        if (!window.maximizeAnimation1 && !window.maximizeAnimation2) {
+            window.setData(Effect.WindowForceBlurRole, null);
+        }
     }
 
     onWindowFrameGeometryChanged(window, oldGeometry) {
@@ -119,6 +130,7 @@ class MaximizeKineticEffect {
             cancel(window.maximizeAnimation2);
             delete window.maximizeAnimation2;
         }
+        window.setData(Effect.WindowForceBlurRole, null);
     }
 }
 
